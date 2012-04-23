@@ -1,0 +1,5 @@
+ofxOpenCv
+ofxXmlSettings
+ofxThreadedImageLoader
+ofxHttpUtils
+ofxHttpServer
