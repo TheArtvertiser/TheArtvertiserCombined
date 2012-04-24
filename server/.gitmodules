@@ -1,3 +1,0 @@
-[submodule "src/ofxHttpServer"]
-	path = src/ofxHttpServer
-	url = git@github.com:damiannz/ofxHttpServer

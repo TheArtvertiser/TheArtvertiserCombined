@@ -67,9 +67,9 @@ void Detector::setup(string _model, ofVideoGrabber & _video, const vector<ofPoin
 #elif defined (TARGET_LINUX)
 	ofGstVideoGrabber * grabber = (ofGstVideoGrabber*) video->getGrabber().get();
 	ofGstVideoUtils * videoUtils = grabber->getGstVideoUtils();
+	ofRemoveListener(videoUtils->bufferEvent,this,&Detector::newFrame);
 #endif
 
-	ofRemoveListener(videoUtils->bufferEvent,this,&Detector::newFrame);
 	ofSleepMillis(500);
 
 
@@ -108,7 +108,10 @@ void Detector::setup(string _model, ofVideoGrabber & _video, const vector<ofPoin
 	state = Initializing;
 	if(!lock) startThread(true,false);
 	else init();
+	
+#ifdef TARGET_LINUX
 	ofAddListener(videoUtils->bufferEvent,this,&Detector::newFrame);
+#endif
 }
 
 void Detector::setupTrainOnly(string _model){

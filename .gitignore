@@ -1,0 +1,6 @@
+*/bin/*.app
+xcshareddata
+xcuserdata
+project.xcworkspace
+
+
