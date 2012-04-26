@@ -1,0 +1,15 @@
+bin/cc
+bin/classes
+bin/libs
+bin/data/*.jpg
+bin/data/*.JPG
+bin/data/warped
+obj
+gen
+local.properties
+.settings
+.externalToolBuilders
+libOFAndroidApp.so
+*.apk
+*.ap_
+*.dex
