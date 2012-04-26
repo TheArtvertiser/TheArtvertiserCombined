@@ -11,7 +11,7 @@ OF_ROOT = ../../..
 # USER_CFLAGS = -I src/objects
 
 USER_CFLAGS = -Isrc/comm  -Isrc/app -Isrc/binocular
-USER_CFLAGS += $(addprefix -I, $(shell find ../TheArtvertiserCommon \( -name .git -prune -o -type d \) -and \( -not -name .git \) )) -I../TheArtvertiserCommon
+USER_CFLAGS += $(addprefix -I, $(shell find ../common \( -name .git -prune -o -type d \) -and \( -not -name .git \) )) -I../common
 USER_CFLAGS += -D__STDC_CONSTANT_MACROS
 
 
@@ -39,7 +39,7 @@ ANDROID_COMPILER_OPTIMIZATION = -Os -g1
 # useful if you need to share a folder with code between 2 apps. The makefile will search recursively
 # you can only set 1 path here
 
-USER_SOURCE_DIR = ../TheArtvertiserCommon
+USER_SOURCE_DIR = ../common
 
 # you shouldn't need to change this for usual OF apps, it allows to exclude code from some directories
 # useful if you have some code for reference in the project folder but don't want it to be compiled

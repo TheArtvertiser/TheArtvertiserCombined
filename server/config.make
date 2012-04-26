@@ -11,7 +11,7 @@ OF_ROOT = ../../..
 # USER_CFLAGS = -I src/objects
 
 USER_CFLAGS = -Isrc 
-USER_CFLAGS += $(addprefix -I, $(shell find ../TheArtvertiserCommon \( -name .git -prune -o -type d \) -and \( -not -name .git \) )) -I../TheArtvertiserCommon
+USER_CFLAGS += $(addprefix -I, $(shell find ../common \( -name .git -prune -o -type d \) -and \( -not -name .git \) )) -I../common
 
 # USER_LDFLAGS allows to pass custom flags to the linker
 # for example libraries like:
@@ -37,6 +37,6 @@ ANDROID_COMPILER_OPTIMIZATION = -Os
 # useful if you need to share a folder with code between 2 apps. The makefile will search recursively
 # you can only set 1 path here
 
-USER_SOURCE_DIR = ../TheArtvertiserCommon
+USER_SOURCE_DIR = ../common
 
 EXCLUDE_FROM_SOURCE="bin,.xcodeproj,obj,src/ofxHttpServer/example,.git,../TheArtvertiserCommon/.git"
