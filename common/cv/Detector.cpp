@@ -63,14 +63,15 @@ void Detector::setup(string _model, ofVideoGrabber & _video, const vector<ofPoin
 	video = &_video;
 #ifdef TARGET_ANDROID
 	ofxAndroidVideoGrabber * grabber = (ofxAndroidVideoGrabber*) video->getGrabber().get();
-	ofAddListener(grabber->newFrameE,this,&Detector::newFrame);
+	ofRemoveListener(grabber->newFrameE,this,&Detector::newFrame);
+	ofSleepMillis(500);
 #elif defined (TARGET_LINUX)
 	ofGstVideoGrabber * grabber = (ofGstVideoGrabber*) video->getGrabber().get();
 	ofGstVideoUtils * videoUtils = grabber->getGstVideoUtils();
 	ofRemoveListener(videoUtils->bufferEvent,this,&Detector::newFrame);
+	ofSleepMillis(500);
 #endif
 
-	ofSleepMillis(500);
 
 
 	model = _model;
@@ -82,7 +83,7 @@ void Detector::setup(string _model, ofVideoGrabber & _video, const vector<ofPoin
 
 	overrideWidth = _overrideWidth;
 	overrideHeight = _overrideHeight;
-	
+
 	if ( overrideWidth > 0 )
 	{
 		width = overrideWidth;
@@ -109,7 +110,9 @@ void Detector::setup(string _model, ofVideoGrabber & _video, const vector<ofPoin
 	if(!lock) startThread(true,false);
 	else init();
 	
-#ifdef TARGET_LINUX
+#ifdef TARGET_ANDROID
+	ofAddListener(grabber->newFrameE,this,&Detector::newFrame);
+#elif defined (TARGET_LINUX)
 	ofAddListener(videoUtils->bufferEvent,this,&Detector::newFrame);
 #endif
 }
