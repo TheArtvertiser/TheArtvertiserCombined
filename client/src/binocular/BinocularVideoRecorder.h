@@ -31,7 +31,9 @@ private:
 	
 	bool recording;
 	itg::ofxMovieExporter exporter;
+	string snapshotFilename;
 	
+	bool snapshotted;
 	int width, height;
 	double lastFrameTime;
 	double framerate;

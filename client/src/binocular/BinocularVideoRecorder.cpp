@@ -43,10 +43,12 @@ void BinocularVideoRecorder::toggleRecording()
 		lastFrameTime = ofGetElapsedTimef()-RECORD_TIMESTEP;
 		string filename = ofGetTimestampString()+"_";
 		string folder = "recordings";
+		snapshotted = false;
+		snapshotFilename = folder + "/" + filename + ".mp4.png";
+		
 		exporter.record( filename, folder, true );
 
 		ofAddListener( ofEvents().draw, this, &BinocularVideoRecorder::draw );
-		
 	}
 	else
 	{
@@ -65,6 +67,13 @@ void BinocularVideoRecorder::addFrame( ofPixels& pixels )
 {
 	if ( !recording )
 		return;
+	
+	if ( !snapshotted )
+	{
+		ofImage snapshot( pixels );
+		snapshot.saveImage( snapshotFilename );
+		snapshotted = true;
+	}
 	
 	exporter.addFrame( pixels.getPixels(), pixels.getWidth(), pixels.getHeight() );
 	lastFrameTime = ofGetElapsedTimef();
