@@ -68,26 +68,26 @@ void BinocularMenu::draw( ofEventArgs& args )
 		
 		float selectionY = 0;
 		int count =0;
-		for ( int i=0; i<adverts.size(); i++) 
+		for ( int i=0; i<advertArtworkPairs.size(); i++ )
 		{
-			for ( int j=0; j<artworkFiles[i].size(); j++ )
-			{
-				
-				string description = adverts[i].getDescription( artworkFiles[i][j] );
-				
-				bool highlight = (count==selectionIndex);
-				int shadow = (highlight?-1:0);
-				ofSetColor( highlight ? ofColor::black : ofColor::white );
-				font.drawString( ofToString( count+1 )+" "+description, 10+shadow, count*lineHeight + yOffset + shadow );
-				ofSetColor( highlight ? ofColor::white : ofColor::black );
-				font.drawString( ofToString( count+1 )+" "+description, 11+shadow, count*lineHeight + yOffset + 1 + shadow );
-				
-				count++;
-				
-				if ( count == selectionIndex )
-					selectionY = count*lineHeight + yOffset;
+			int whichAdvert = advertArtworkPairs[i].first;
+			int whichArtwork = advertArtworkPairs[i].second;
 
-			}
+			string description = adverts[whichAdvert].getDescription( artworkFiles[whichAdvert][whichArtwork] );
+				
+			bool highlight = (count==selectionIndex);
+			int shadow = (highlight?-1:0);
+			ofSetColor( highlight ? ofColor::black : ofColor::white );
+			font.drawString( ofToString( count+1 )+" "+description, 10+shadow, count*lineHeight + yOffset + shadow );
+			ofSetColor( highlight ? ofColor::white : ofColor::black );
+			font.drawString( ofToString( count+1 )+" "+description, 11+shadow, count*lineHeight + yOffset + 1 + shadow );
+								
+			count++;
+				
+			if ( count == selectionIndex )
+				selectionY = count*lineHeight + yOffset;
+
+			
 		}
 		
 		ofSetColor( ofColor::white );
