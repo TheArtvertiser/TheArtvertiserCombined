@@ -66,6 +66,7 @@ void BinocularMenu::draw( ofEventArgs& args )
 
 		ofSetColor( ofColor::black );
 		
+		float selectionY = 0;
 		int count =0;
 		for ( int i=0; i<adverts.size(); i++) 
 		{
@@ -82,9 +83,31 @@ void BinocularMenu::draw( ofEventArgs& args )
 				font.drawString( ofToString( count+1 )+" "+description, 11+shadow, count*lineHeight + yOffset + 1 + shadow );
 				
 				count++;
+				
+				if ( count == selectionIndex )
+					selectionY = count*lineHeight + yOffset;
 
 			}
 		}
+		
+		ofSetColor( ofColor::white );
+		const ofFile& previewImagePath = adverts[advertArtworkPairs[selectionIndex].first].getCompressedImage();
+		ofPtr<ofImage> previewImage = iconCache.getResource( previewImagePath.getAbsolutePath()+"Preview");
+		if(!previewImage->bAllocated()){
+			previewImage->setUseTexture(true);
+			previewImage->loadImage( previewImagePath );
+			float ratio = previewImage->getHeight()/previewImage->getWidth();
+			previewImage->resize(ofGetWidth()/4.,(ofGetWidth()/4.)*ratio);
+		}
+
+		float previewY = 10;
+		if ( selectionY < ofGetHeight()/2 )
+		{
+			previewY = ofGetHeight()-previewImage->getHeight()-10;
+		}
+		float previewX = ofGetWidth()-previewImage->getWidth()-10;
+		previewImage->draw( previewX, previewY );
+		
 		
 		
 	}
