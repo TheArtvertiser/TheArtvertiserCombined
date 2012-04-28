@@ -54,13 +54,13 @@ void BinocularMenu::draw( ofEventArgs& args )
 		int linesPerScreen = float(ofGetHeight())/lineHeight;
 		int midLine = linesPerScreen/2;
 		float yOffset = FONT_SIZE;
-		if ( selectionIndex > midLine )
+/*		if ( selectionIndex > midLine )
 		{
 			if ( selectionIndex < advertArtworkPairs.size()-midLine )
 				yOffset -= lineHeight*(selectionIndex-midLine);
 			else
 				yOffset -= lineHeight*(advertArtworkPairs.size()-2*midLine);
-		}
+		}*/
 				
 		//float yOffset = FONT_SIZE - max(min(advertArtworkPairs.size()-4,selectionIndex-8),0)*lineHeight;
 
