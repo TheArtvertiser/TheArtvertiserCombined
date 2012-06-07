@@ -238,12 +238,22 @@ vector<ofFile> Artvert::getArtverts(){
 	default_artverts_dir.allowExt("jpg");
 	default_artverts_dir.allowExt("png");
 	default_artverts_dir.allowExt("bmp");
+#ifndef TARGET_ANDROID
+	// we don't have a video player on android
+	default_artverts_dir.allowExt("mov");
+	default_artverts_dir.allowExt("mp4");
+#endif
 	default_artverts_dir.listDir();
 	vector<ofFile> artverts = default_artverts_dir.getFiles();
 
 	ofDirectory artverts_dir("artverts/" + getUID());
 	artverts_dir.allowExt("jpg");
 	artverts_dir.allowExt("png");
+	artverts_dir.allowExt("bmp");
+#ifndef TARGET_ANDROID
+	artverts_dir.allowExt("mov");
+	artverts_dir.allowExt("mp4");
+#endif
 	artverts_dir.listDir();
 	vector<ofFile> own_artverts = artverts_dir.getFiles();
 	artverts.insert(artverts.end(),own_artverts.begin(),own_artverts.end());

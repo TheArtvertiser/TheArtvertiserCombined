@@ -42,6 +42,7 @@ void SubstituteImage::setup( string filename )
 			ofLog(OF_LOG_NOTICE, "loaded video, width/height %f %f", video.getWidth(), video.getHeight() );
 			video.setUseTexture(true);
 			isVideo = true;
+			videoWasDrawn = false;
 		}
 	}
 		
@@ -68,7 +69,17 @@ void SubstituteImage::setup( string filename )
 
 void SubstituteImage::update( ofEventArgs& args )
 {
-	video.update();
+	if ( isVideo )
+	{
+		// videoWas
+		if ( videoWasDrawn )
+			video.update();
+		if ( !videoWasDrawn && video.isPlaying() )
+		{
+			video.stop();
+		}
+		videoWasDrawn = false;
+	}	
 }
 
 
@@ -76,7 +87,11 @@ void SubstituteImage::draw( float x, float y )
 {
 	if ( isVideo )
 	{
+		if ( !video.isPlaying() )
+			video.play();
+		
 		video.draw( x, y );
+		videoWasDrawn = true;
 	}
 	else
 	{

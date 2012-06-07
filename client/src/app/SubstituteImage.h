@@ -22,6 +22,10 @@ public:
 	
 	void draw( float x, float y );
 	
+	/// call to turn on/off movie playback
+	void enable();
+	void disable();
+	
 	const vector<ofPoint>& getImgQuad() { return imgQuad; };
 	
 private:
@@ -30,6 +34,7 @@ private:
 	ofVideoPlayer video;
 	
 	bool isVideo;
+	bool videoWasDrawn;
 	
 	vector <ofPoint> imgQuad;
 	
