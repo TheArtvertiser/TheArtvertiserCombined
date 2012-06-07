@@ -13,6 +13,7 @@
 #include "ofPoint.h"
 #include "ofxGeoLocation.h"
 #include "ofxMD5.h"
+#include <map>
 
 #define DEFAULT_ARTVERT_FOLDER "adverts/"
 
