@@ -60,7 +60,7 @@ int main( int argc, char** argv ){
 //========================================================================
 extern "C"{
 	void Java_cc_openframeworks_OFAndroid_init( JNIEnv*  env, jobject  thiz ){
-		main();
+		main(0,NULL);
 	}
 }
 #endif

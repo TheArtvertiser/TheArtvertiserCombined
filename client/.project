@@ -72,36 +72,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
-			<triggers>full,incremental,</triggers>
-			<arguments>
-				<dictionary>
-					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/com.android.ide.eclipse.adt.PreCompilerBuilder (6).launch</value>
-				</dictionary>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
-			<triggers>full,incremental,</triggers>
-			<arguments>
-				<dictionary>
-					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/org.eclipse.jdt.core.javabuilder (7).launch</value>
-				</dictionary>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
-			<triggers>full,incremental,</triggers>
-			<arguments>
-				<dictionary>
-					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/com.android.ide.eclipse.adt.ApkBuilder (7).launch</value>
-				</dictionary>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
 			<arguments>
 			</arguments>
@@ -117,24 +87,29 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>TheArtvertiserCommon</name>
-			<type>2</type>
-			<location>/home/arturo/Desktop/openFrameworks/apps/artvertiser/TheArtvertiserCommon</location>
-		</link>
-		<link>
 			<name>addons</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>ofAndroidLib_src</name>
+			<name>common</name>
 			<type>2</type>
-			<locationURI>_android_ofAndroidLib_4b0f72cd/src</locationURI>
+			<location>/home/arturo/Desktop/openFrameworks/apps/TheArtvertiserCombined/common</location>
 		</link>
 		<link>
 			<name>addons/ofxAndroid</name>
 			<type>2</type>
 			<location>/home/arturo/Desktop/openFrameworks/addons/ofxAndroid</location>
+		</link>
+		<link>
+			<name>addons/ofxAvahiClient</name>
+			<type>2</type>
+			<location>/home/arturo/Desktop/openFrameworks/addons/ofxAvahiClient</location>
+		</link>
+		<link>
+			<name>addons/ofxAvahiCore</name>
+			<type>2</type>
+			<location>/home/arturo/Desktop/openFrameworks/addons/ofxAvahiCore</location>
 		</link>
 		<link>
 			<name>addons/ofxMovieExporter</name>

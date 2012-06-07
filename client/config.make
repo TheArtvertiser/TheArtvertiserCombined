@@ -25,7 +25,11 @@ USER_LD_FLAGS =
 # use this to add system libraries for example:
 # USER_LIBS = -lpango
 
-USER_LIBS = -lavcodec -lavformat -lavutil -lswscale
+ifeq ($(ARCH),android)
+else
+	USER_LIBS = -lavcodec -lavformat -lavutil -lswscale $(shell pkg-config --libs avahi-client)
+endif
+
 
 
 # change this to add different compiler optimizations to your project

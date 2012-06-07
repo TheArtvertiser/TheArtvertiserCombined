@@ -30,7 +30,10 @@ private:
 	void setWidthHeight( int w, int h ) { width = w; height = h; }
 	
 	bool recording;
+
+#ifndef TARGET_ANDROID
 	itg::ofxMovieExporter exporter;
+#endif
 	
 	int width, height;
 	double lastFrameTime;

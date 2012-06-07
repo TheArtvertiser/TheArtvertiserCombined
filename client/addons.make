@@ -7,3 +7,5 @@ ofxThread
 ofxVectorMath
 ofxHttpUtils
 ofxMovieExporter
+#ofxAvahiClient
+#ofxAvahiCore
