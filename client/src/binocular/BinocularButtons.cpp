@@ -19,13 +19,7 @@ void BinocularButtons::setup( bool bDebug )
 void BinocularButtons::tryToConnect()
 {
 	// setup the first device for 9600
-#ifdef TARGET_OSX
-	serialConnection.listDevices();
 	isConnected = serialConnection.setup( 0, 9600 );
-#else
-	isConnected = serialConnection.setup( 0, 9600 );
-//	serialConnection.setup("/dev/ttyUSB0", 9600);
-#endif
 }
 
 void BinocularButtons::shutdown()

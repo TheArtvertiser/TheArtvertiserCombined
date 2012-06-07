@@ -24,7 +24,7 @@ void CommandlineParser::parse( int argc, char **argv )
 	runningOnBinoculars = false;
 	
 
-	for ( int i=0; i<argc; i++ )
+	for ( int i=1; i<argc; i++ )
 	{
 		if ( string(argv[i]) == "-b" )
 		   runningOnBinoculars = true;

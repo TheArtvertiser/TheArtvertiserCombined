@@ -31,6 +31,7 @@
 #include "IconCache.h"
 #include "ofxGeoLocation.h"
 #include "OnlineArtverts.h"
+#include "SubstituteImage.h"
 
 #include "Binocular.h"
 								
@@ -76,10 +77,10 @@
 		ArtvertInfo artvertInfo;
 		OnlineArtverts onlineArtverts;
 
-		ofImage ofimg, subs_img;
+		ofImage ofimg;
+		SubstituteImage subs_img;
 		int counter;
 		ofVideoGrabber grabber;
-		vector<ofPoint> imgQuad;
 		ofxCvColorImage colorImg, smallColorImg;
 		gui::CircularPB circularPB;
 

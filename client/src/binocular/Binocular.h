@@ -38,6 +38,8 @@ private:
 	
 	void redAndBlueButtonsPressed( bool &pressed );
 	
+	void keyPressed( ofKeyEventArgs& args );
+	
 	
 	
 	BinocularMenu menu;

@@ -73,6 +73,8 @@ void ArtvertInfo::show(Artvert & _artvert){
 	grid.setCellSize(cameraIcon.getWidth()*1.5, cameraIcon.getWidth()*1.5*3./4.);
 	grid.setSpacing(20,20);
 	grid.enableEvents();
+	
+	ofLogLevel oldLevel = ofGetLogLevel();
 
 	artverts = artvert.getArtverts();
 	ofLogVerbose("ArtvertiserApp", "number of artverts: "+ofToString(artverts.size()) );
@@ -84,7 +86,24 @@ void ArtvertInfo::show(Artvert & _artvert){
 		ofPtr<ofImage> icon = iconCache->getResource(artverts[i].getAbsolutePath()+"Resized");
 		if(!icon->bAllocated()){
 			icon->setUseTexture(false);
-			icon->loadImage(artverts[i]);
+			bool imageLoaded = icon->loadImage(artverts[i]);
+#ifndef TARGET_ANDROID
+			if ( !imageLoaded ){
+				// try a video?
+				ofVideoPlayer player;
+				bool videoLoaded = player.loadMovie(artverts[i].getAbsolutePath());
+				if ( videoLoaded ){
+					// seek to middle frame
+					player.setSpeed(0);
+					player.play();
+					player.setFrame( player.getTotalNumFrames()/2 );
+					while (! player.isFrameNew() )
+						player.update();
+					// grab
+					icon->setFromPixels( player.getPixelsRef() );
+				}
+			}
+#endif
 			float ratio = icon->getWidth()/icon->getHeight();
 			float width,height;
 			if(ratio>1){
@@ -99,6 +118,7 @@ void ArtvertInfo::show(Artvert & _artvert){
 		button->setIcon(*icon);
 		ofAddListener(button->pressedE,this,&ArtvertInfo::artvertPressed);
 	}
+
 
 	refresh = true;
 	mutex.unlock();

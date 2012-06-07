@@ -25,9 +25,11 @@ void Binocular::setup( ofVideoGrabber& grabber, bool bDebug )
 	recorder.setup( grabber );
 	
 	ofAddListener( buttons.redAndBlueButtons, this, &Binocular::redAndBlueButtonsPressed );
-	
 
+	ofAddListener( ofEvents().keyPressed, this, &Binocular::keyPressed );
+	
 }
+
 
 void Binocular::redAndBlueButtonsPressed( bool &pressed )
 {
@@ -41,3 +43,27 @@ void Binocular::gotFrame(  ofPixels& pixels )
 	recorder.addFrame( pixels );
 }
 #endif
+
+
+void Binocular::keyPressed( ofKeyEventArgs& args )
+{
+	int key = args.key;
+	bool t = true;
+	if ( key == '1' )
+	{
+		ofNotifyEvent( buttons.redButton, t );
+	}
+	else if ( key == '2' )
+	{
+		ofNotifyEvent( buttons.greenButton, t );
+	}
+	else if ( key == '3' )
+	{
+		ofNotifyEvent( buttons.blueButton, t );
+	}
+	else if ( key == '4' )
+	{
+		ofNotifyEvent( buttons.redAndBlueButtons, t );
+	}
+	
+}

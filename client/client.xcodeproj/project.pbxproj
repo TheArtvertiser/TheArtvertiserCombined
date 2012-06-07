@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1a177e20c85dbd3f6869b74cb2d0b3e3 /* ArtvertInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = dc0da7b275416a690f4ee74df11d28fc /* ArtvertInfo.cpp */; };
 		28dcb9949680410908efd4d574752841 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8aed12dbc5dc04739e95cd26c9832863 /* tinyxmlerror.cpp */; };
+		2D386E501580D82C0030C5BA /* TakeAPhoto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D386E4E1580D82C0030C5BA /* TakeAPhoto.cpp */; };
+		2D386E5C158110230030C5BA /* SubstituteImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D386E5A158110230030C5BA /* SubstituteImage.cpp */; };
 		2DD722CD154744A70033CDD1 /* Detector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7226A154744A70033CDD1 /* Detector.cpp */; };
 		2DD722CE154744A70033CDD1 /* ofxFern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7226D154744A70033CDD1 /* ofxFern.cpp */; };
 		2DD722CF154744A70033CDD1 /* cv_fast_10.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2DD72270154744A70033CDD1 /* cv_fast_10.cc */; };
@@ -55,13 +57,6 @@
 		2DD72372154746440033CDD1 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD7233C154746440033CDD1 /* libavformat.a */; };
 		2DD72373154746440033CDD1 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD7233D154746440033CDD1 /* libavutil.a */; };
 		2DD72374154746440033CDD1 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD7233E154746440033CDD1 /* libswscale.a */; };
-		2DD72375154746440033CDD1 /* avcodec.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72340154746440033CDD1 /* avcodec.lib */; };
-		2DD72376154746440033CDD1 /* avdevice.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72341154746440033CDD1 /* avdevice.lib */; };
-		2DD72377154746440033CDD1 /* avfilter.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72342154746440033CDD1 /* avfilter.lib */; };
-		2DD72378154746440033CDD1 /* avformat.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72343154746440033CDD1 /* avformat.lib */; };
-		2DD72379154746440033CDD1 /* avutil.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72344154746440033CDD1 /* avutil.lib */; };
-		2DD7237A154746440033CDD1 /* postproc.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72345154746440033CDD1 /* postproc.lib */; };
-		2DD7237B154746440033CDD1 /* swscale.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD72346154746440033CDD1 /* swscale.lib */; };
 		2DD7237E154746440033CDD1 /* ofxMovieExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7235E154746440033CDD1 /* ofxMovieExporter.cpp */; };
 		3354709252a5dc905e9fba46888c2462 /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 352e9a5bd0759cfd7e473a81e3d367fe /* ofxCvShortImage.cpp */; };
 		3b394fdbbb16c20ef578f88a7562419c /* BinocularVideoRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ff27ee3262ca3b2b46ad8da35fdf4760 /* BinocularVideoRecorder.cpp */; };
@@ -96,7 +91,6 @@
 		b4a9cfa353b026b2d3e8e9efd3c9cdfb /* OnlineArtverts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = a4d12839d83b749f2a7edcda5fd98579 /* OnlineArtverts.cpp */; };
 		b8346f19760bec7ae3491ce3d1aa2ea7 /* CommandlineParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4f1cfe08fb8dffa5ff02fe4dc78d09f8 /* CommandlineParser.cpp */; };
 		b8a4986ae3cfd44755d311c7b048d726 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126b1bbaced427bd4f54bc45ab0af33f /* tinyxml.cpp */; };
-		b90b3fcfaf5883bd35b3dda004f4208e /* TakeAPhoto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = bd8a7f57ebdc7cb0dc9016d13051a739 /* TakeAPhoto.cpp */; };
 		bc9d698dffe25117a83a929b7dc58aeb /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = dbc4c328b9d4211a1b3eed96227a01ee /* ofxCvFloatImage.cpp */; };
 		c727bf0e5e2633cada72fcbc235c9b5b /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6a1c4b66d3f8667ae633b12ae236ace0 /* ofxCvGrayscaleImage.cpp */; };
 		df19eddf6fd8beecaa30e4eb9ed970cc /* BinocularButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ea29d126c7a477921a5b176bada662dc /* BinocularButtons.cpp */; };
@@ -151,6 +145,10 @@
 		24191b8ab71758c1213225ca94d48317 /* ground_truth.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ground_truth.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/ground_truth.h; sourceTree = SOURCE_ROOT; };
 		25ae05bbfd0fc4aec23958aa6ae22e4b /* linear_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = linear_index.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/linear_index.h; sourceTree = SOURCE_ROOT; };
 		26e139cf88ac334a010bfd67f79f7e29 /* kdtree_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kdtree_index.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/kdtree_index.h; sourceTree = SOURCE_ROOT; };
+		2D386E4E1580D82C0030C5BA /* TakeAPhoto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TakeAPhoto.cpp; path = ../../common/app/TakeAPhoto.cpp; sourceTree = "<group>"; };
+		2D386E4F1580D82C0030C5BA /* TakeAPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TakeAPhoto.h; path = ../../common/app/TakeAPhoto.h; sourceTree = "<group>"; };
+		2D386E5A158110230030C5BA /* SubstituteImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubstituteImage.cpp; path = app/SubstituteImage.cpp; sourceTree = "<group>"; };
+		2D386E5B158110230030C5BA /* SubstituteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubstituteImage.h; path = app/SubstituteImage.h; sourceTree = "<group>"; };
 		2DD72268154744A70033CDD1 /* artvert_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = artvert_constants.h; sourceTree = "<group>"; };
 		2DD7226A154744A70033CDD1 /* Detector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Detector.cpp; sourceTree = "<group>"; };
 		2DD7226B154744A70033CDD1 /* Detector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Detector.h; sourceTree = "<group>"; };
@@ -419,11 +417,9 @@
 		ba80450995764f8fabab160488d129fd /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxXmlSettings.cpp; path = ../../../../addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
 		bb1b2b16c4a92df0574e2eed1ecdeefc /* Comm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Comm.h; path = src/comm/Comm.h; sourceTree = SOURCE_ROOT; };
 		bd4d9a1b379e1e09e57786ef57bd7fea /* ofxCvContourFinder.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxCvContourFinder.cpp; path = ../../../../addons/ofxOpenCv/src/ofxCvContourFinder.cpp; sourceTree = SOURCE_ROOT; };
-		bd8a7f57ebdc7cb0dc9016d13051a739 /* TakeAPhoto.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TakeAPhoto.cpp; path = src/app/TakeAPhoto.cpp; sourceTree = SOURCE_ROOT; };
 		bda499159407a31b0d3481f7f916eb17 /* nn_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = nn_index.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/nn_index.h; sourceTree = SOURCE_ROOT; };
 		c4f2d5fdc5ff4af7685f5c8aab43a2a6 /* ArtvertiserApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ArtvertiserApp.cpp; path = src/ArtvertiserApp.cpp; sourceTree = SOURCE_ROOT; };
 		c5d1107ecbfb14e8ac123cf6fd29147c /* dummy.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dummy.h; path = ../../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/dummy.h; sourceTree = SOURCE_ROOT; };
-		c75c0ead26eb23dfae68f387f0e7fe30 /* TakeAPhoto.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TakeAPhoto.h; path = src/app/TakeAPhoto.h; sourceTree = SOURCE_ROOT; };
 		cadb3dc9bc56f30b983b15f2f7a010d4 /* ofxCvBlob.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvBlob.h; path = ../../../../addons/ofxOpenCv/src/ofxCvBlob.h; sourceTree = SOURCE_ROOT; };
 		cbd606c5b7b81aa162f03ee448139fc5 /* ofxCvConstants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvConstants.h; path = ../../../../addons/ofxOpenCv/src/ofxCvConstants.h; sourceTree = SOURCE_ROOT; };
 		d7acf974b711078184f866510d29bc49 /* ofxHttpTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxHttpTypes.h; path = ../../../../addons/ofxHttpUtils/src/ofxHttpTypes.h; sourceTree = SOURCE_ROOT; };
@@ -473,13 +469,6 @@
 				2DD72372154746440033CDD1 /* libavformat.a in Frameworks */,
 				2DD72373154746440033CDD1 /* libavutil.a in Frameworks */,
 				2DD72374154746440033CDD1 /* libswscale.a in Frameworks */,
-				2DD72375154746440033CDD1 /* avcodec.lib in Frameworks */,
-				2DD72376154746440033CDD1 /* avdevice.lib in Frameworks */,
-				2DD72377154746440033CDD1 /* avfilter.lib in Frameworks */,
-				2DD72378154746440033CDD1 /* avformat.lib in Frameworks */,
-				2DD72379154746440033CDD1 /* avutil.lib in Frameworks */,
-				2DD7237A154746440033CDD1 /* postproc.lib in Frameworks */,
-				2DD7237B154746440033CDD1 /* swscale.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,6 +1208,10 @@
 		be9dd360f550b0df4d357e7bd03dbc87 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				2D386E5A158110230030C5BA /* SubstituteImage.cpp */,
+				2D386E5B158110230030C5BA /* SubstituteImage.h */,
+				2D386E4E1580D82C0030C5BA /* TakeAPhoto.cpp */,
+				2D386E4F1580D82C0030C5BA /* TakeAPhoto.h */,
 				dc0da7b275416a690f4ee74df11d28fc /* ArtvertInfo.cpp */,
 				1b202b2189ba7f97ad02d840ab21152b /* ArtvertInfo.h */,
 				4f1cfe08fb8dffa5ff02fe4dc78d09f8 /* CommandlineParser.cpp */,
@@ -1227,8 +1220,6 @@
 				9421145e6e10d3ef16d60b8599b57bd4 /* MainMenu.h */,
 				a4d12839d83b749f2a7edcda5fd98579 /* OnlineArtverts.cpp */,
 				e5d7c8562a58919cef5534a9a3caf149 /* OnlineArtverts.h */,
-				bd8a7f57ebdc7cb0dc9016d13051a739 /* TakeAPhoto.cpp */,
-				c75c0ead26eb23dfae68f387f0e7fe30 /* TakeAPhoto.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -1409,7 +1400,6 @@
 				b8346f19760bec7ae3491ce3d1aa2ea7 /* CommandlineParser.cpp in Sources */,
 				81c0cbeb46bda0e4c0eda0ab970edcc6 /* MainMenu.cpp in Sources */,
 				b4a9cfa353b026b2d3e8e9efd3c9cdfb /* OnlineArtverts.cpp in Sources */,
-				b90b3fcfaf5883bd35b3dda004f4208e /* TakeAPhoto.cpp in Sources */,
 				acc6adf0a7df29b0e63e2e4685c2ae3a /* ArtvertiserApp.cpp in Sources */,
 				5bb436c6336eef16e7fad336f309d700 /* Binocular.cpp in Sources */,
 				df19eddf6fd8beecaa30e4eb9ed970cc /* BinocularButtons.cpp in Sources */,
@@ -1471,6 +1461,8 @@
 				2DD722F4154744A70033CDD1 /* Artvert.cpp in Sources */,
 				2DD722F5154744A70033CDD1 /* PersistanceEngine.cpp in Sources */,
 				2DD7237E154746440033CDD1 /* ofxMovieExporter.cpp in Sources */,
+				2D386E501580D82C0030C5BA /* TakeAPhoto.cpp in Sources */,
+				2D386E5C158110230030C5BA /* SubstituteImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1489,7 +1481,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1506,6 +1499,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					../common,
 					../common/ofxMD5/libs,
 					../../../../addons/ofxMovieExporter/libs/libav/include,
 					"$(OF_CORE_HEADERS)",
@@ -1547,29 +1541,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_calib3d.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_calib3d_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_contrib.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_contrib_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_core.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_core_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_features2d.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_features2d_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_flann.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_flann_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_haartraining_engine.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_highgui.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_highgui_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_imgproc.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_imgproc_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_legacy.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_legacy_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_ml.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_ml_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_objdetect.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_objdetect_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_video.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_video_pch_dephelp.a,
 					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
 				);
 			};
@@ -1579,7 +1550,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1598,6 +1570,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
+					../common,
 					../common/ofxMD5/libs,
 					../../../../addons/ofxMovieExporter/libs/libav/include,
 					"$(OF_CORE_HEADERS)",
@@ -1639,29 +1612,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_calib3d.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_calib3d_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_contrib.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_contrib_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_core.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_core_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_features2d.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_features2d_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_flann.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_flann_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_haartraining_engine.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_highgui.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_highgui_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_imgproc.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_imgproc_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_legacy.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_legacy_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_ml.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_ml_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_objdetect.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_objdetect_pch_dephelp.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_video.a,
-					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/libopencv_video_pch_dephelp.a,
 					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
 				);
 			};
@@ -1749,9 +1699,16 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../../addons/ofxMovieExporter/libs/libav/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../../../addons/ofxMovieExporter/libs/libav/lib/vs2010\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../../addons/ofxOpenCv/libs/opencv/lib/osx\"";
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_LIBS)",
+					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					"-lopencv_highgui",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1839,9 +1796,16 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../../addons/ofxMovieExporter/libs/libav/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../../../addons/ofxMovieExporter/libs/libav/lib/vs2010\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../../addons/ofxOpenCv/libs/opencv/lib/osx\"";
+				OTHER_LDFLAGS = (
+					"$(OF_CORE_LIBS)",
+					../../../../addons/ofxOpenCv/libs/opencv/lib/osx/opencv.a,
+					"-lopencv_highgui",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

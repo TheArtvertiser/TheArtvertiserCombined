@@ -34,6 +34,7 @@ private:
 #ifndef TARGET_ANDROID
 	itg::ofxMovieExporter exporter;
 #endif
+	string snapshotFilename;
 	
 	int width, height;
 	double lastFrameTime;

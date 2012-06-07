@@ -143,8 +143,6 @@ void ArtvertiserApp::setup(){
 	circularPB.setPosition(ofPoint(grabber.getWidth()*0.5,ofGetHeight()*0.5));
 
 
-	imgQuad.resize(4);
-
 	ofAddListener(takeAPhoto.exitE,this,&ArtvertiserApp::appFinished);
 	ofAddListener(takeAPhoto.newPhotoE,this,&ArtvertiserApp::newPhoto);
 
@@ -207,11 +205,6 @@ void ArtvertiserApp::update(){
 		artvertInfo.update();
 		break;
 	case Tracking:
-		if(refreshArtvert){
-			subs_img.setUseTexture(true);
-			subs_img.reloadTexture();
-			refreshArtvert = false;
-		}
 		if(artvertiser.getState()!=Detector::Initializing){
 			
 			grabber.update();
@@ -295,6 +288,7 @@ void ArtvertiserApp::draw(){
 void ArtvertiserApp::keyPressed  (int key){
 	if ( key == OF_KEY_BACKSPACE )
 		backPressed();
+	
 }
 
 //--------------------------------------------------------------
@@ -366,26 +360,20 @@ void ArtvertiserApp::downloadPressed(bool & pressed){
 
 //--------------------------------------------------------------
 void ArtvertiserApp::artvertSelected(ofFile & artvertimg){
-	subs_img.setUseTexture(false);
-	subs_img.loadImage(artvertimg);
-	if(!subs_img.bAllocated()) allocated = false;
-	refreshArtvert = true;
+	
 
-	imgQuad[0].set(0,0);
-	imgQuad[1].set(subs_img.getWidth(),0);
-	imgQuad[2].set(subs_img.getWidth(),subs_img.getHeight());
-	imgQuad[3].set(0,subs_img.getHeight());
+	subs_img.setup( artvertimg.getAbsolutePath() );
 
 	state = Tracking;
 	artvertInfo.stop();
 	Artvert & artvert = artvertInfo.getCurrentArtvert();
 
 	if(artvert.hasAlias()){
-		artvertiser.setup(artvert.getAlias().getModel().getAbsolutePath(),grabber,imgQuad, false, detectW, detectH );
+		artvertiser.setup(artvert.getAlias().getModel().getAbsolutePath(),grabber,subs_img.getImgQuad(), false, detectW, detectH );
 		ofLogVerbose("ArtvertiserApp", "artvert.hasAlias()");
 	}else{
 		ofLogVerbose("ArtvertiserApp", "doesn't: artvert.hasAlias()");
-		artvertiser.setup(artvert.getModel().getAbsolutePath(),grabber,imgQuad, false, detectW, detectH );
+		artvertiser.setup(artvert.getModel().getAbsolutePath(),grabber,subs_img.getImgQuad(), false, detectW, detectH );
 	}
 }
 
@@ -398,25 +386,17 @@ void ArtvertiserApp::advertSelected(Artvert & artvert){
 
 void ArtvertiserApp::artvertSelectedBinoculars(Binocular::ArtvertSelectedEventInfo &info)
 {
-	subs_img.setUseTexture(false);
-	subs_img.loadImage( info.selectedArtvert );
-	if ( !subs_img.bAllocated()) allocated = false;
-	refreshArtvert = true;
-	
-	imgQuad[0].set(0,0);
-	imgQuad[1].set(subs_img.getWidth(),0);
-	imgQuad[2].set(subs_img.getWidth(),subs_img.getHeight());
-	imgQuad[3].set(0,subs_img.getHeight());
+	subs_img.setup( info.selectedArtvert.getAbsolutePath() );
 	
 	state = Tracking;
 	Artvert & artvert = info.selectedAdvert;
 	if ( artvert.hasAlias() )
 	{
-		artvertiser.setup(artvert.getAlias().getModel().getAbsolutePath(),grabber,imgQuad, false, detectW, detectH );
+		artvertiser.setup(artvert.getAlias().getModel().getAbsolutePath(),grabber,subs_img.getImgQuad(), false, detectW, detectH );
 		ofLogVerbose("ArtvertiserApp", "artvert.hasAlias()");
 	}else{
 		ofLogVerbose("ArtvertiserApp", "doesn't: artvert.hasAlias()");
-		artvertiser.setup(artvert.getModel().getAbsolutePath(),grabber,imgQuad, false, detectW, detectH );
+		artvertiser.setup(artvert.getModel().getAbsolutePath(),grabber,subs_img.getImgQuad(), false, detectW, detectH );
 	}
 }
 
