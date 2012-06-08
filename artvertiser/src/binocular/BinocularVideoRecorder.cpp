@@ -71,6 +71,15 @@ void BinocularVideoRecorder::addFrame( ofPixels& pixels )
 	if ( !recording )
 		return;
 	
+	if ( !snapshotted )
+	{
+		ofImage snapshot;
+		snapshot.setUseTexture( false );
+		snapshot.setFromPixels( pixels );
+		snapshot.saveImage( snapshotFilename );
+		snapshotted = true;
+	}
+	
 	exporter.addFrame( pixels.getPixels(), pixels.getWidth(), pixels.getHeight() );
 	lastFrameTime = ofGetElapsedTimef();
 }
