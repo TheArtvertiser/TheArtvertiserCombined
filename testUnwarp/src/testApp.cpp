@@ -5,6 +5,10 @@ void testApp::setup(){
 	dir.listDir("");
 	currentImg = 0;
 	img.loadImage(dir.getFile(0).path());
+	if(img.getWidth()>img.getHeight())
+		img.resize(640,480);
+	else
+		img.resize(480,640);
 	quad.resize(4);
 	quad[0].set(0,0);
 	quad[1].set(640,0);
@@ -68,11 +72,19 @@ void testApp::keyPressed(int key){
 		currentImg++;
 		currentImg%=dir.size();
 		img.loadImage(dir.getFile(currentImg).path());
+		if(img.getWidth()>img.getHeight())
+			img.resize(640,480);
+		else
+			img.resize(480,640);
 	}
 	if(key==OF_KEY_DOWN){
 		currentImg--;
 		currentImg%=dir.size();
 		img.loadImage(dir.getFile(currentImg).path());
+		if(img.getWidth()>img.getHeight())
+			img.resize(640,480);
+		else
+			img.resize(480,640);
 	}
 }
 
