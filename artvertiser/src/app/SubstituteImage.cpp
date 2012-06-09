@@ -23,7 +23,7 @@ SubstituteImage::~SubstituteImage()
 		ofRemoveListener(  ofEvents().update, this, &SubstituteImage::update );
 }
 
-void SubstituteImage::setup( string filename )
+void SubstituteImage::setup( string filename, bool preserveRatio, float bleed )
 {
 	if ( isVideo )
 		ofRemoveListener(  ofEvents().update, this, &SubstituteImage::update );
@@ -81,6 +81,7 @@ void SubstituteImage::update( ofEventArgs& args )
 		videoWasDrawn = false;
 	}	
 }
+
 
 
 void SubstituteImage::draw( float x, float y )

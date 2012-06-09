@@ -16,7 +16,10 @@ public:
 	SubstituteImage();
 	~SubstituteImage();
 	
-	void setup( string filename );
+	/// if preserveRatio is true the ratio will be preserved. 
+	/// at bleed=1 image will be enlarged to fill the surface, and not cropped. 
+	/// at bleed=0 image will shrink and black bars will be drawn.
+	void setup( string filename, bool preserveRatio=true, float bleed=1.0f );
 	
 	void update( ofEventArgs & args );
 	
@@ -32,7 +35,10 @@ private:
 	
 	ofImage image;
 	ofVideoPlayer video;
-	
+
+	bool preserveRatio;
+	float bleed;
+
 	bool isVideo;
 	bool videoWasDrawn;
 	
