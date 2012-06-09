@@ -90,24 +90,27 @@ void BinocularMenu::draw( ofEventArgs& args )
 			
 		}
 		
-		ofSetColor( ofColor::white );
-		const ofFile& previewImagePath = adverts[advertArtworkPairs[selectionIndex].first].getCompressedImage();
-		ofPtr<ofImage> previewImage = iconCache.getResource( previewImagePath.getAbsolutePath()+"Preview");
-		if(!previewImage->bAllocated()){
-			previewImage->setUseTexture(true);
-			previewImage->loadImage( previewImagePath );
-			float ratio = previewImage->getHeight()/previewImage->getWidth();
-			previewImage->resize(ofGetWidth()/4.,(ofGetWidth()/4.)*ratio);
-		}
-
-		float previewY = 10;
-		if ( selectionY < ofGetHeight()/2 )
+		if ( advertArtworkPairs.size() > 0 && advertArtworkPairs.size() > selectionIndex )
 		{
-			previewY = ofGetHeight()-previewImage->getHeight()-10;
+			const ofFile& previewImagePath = adverts[advertArtworkPairs[selectionIndex].first].getCompressedImage();
+			ofPtr<ofImage> previewImage = iconCache.getResource( previewImagePath.getAbsolutePath()+"Preview");
+			if(!previewImage->bAllocated()){
+				previewImage->setUseTexture(true);
+				previewImage->loadImage( previewImagePath );
+				float ratio = previewImage->getHeight()/previewImage->getWidth();
+				previewImage->resize(ofGetWidth()/4.,(ofGetWidth()/4.)*ratio);
+			}
+
+			float previewY = 10;
+			if ( selectionY < ofGetHeight()/2 )
+			{
+				previewY = ofGetHeight()-previewImage->getHeight()-10;
+			}
+			float previewX = ofGetWidth()-previewImage->getWidth()-10;
+			ofSetColor( ofColor::white );
+			previewImage->draw( previewX, previewY );
+			
 		}
-		float previewX = ofGetWidth()-previewImage->getWidth()-10;
-		previewImage->draw( previewX, previewY );
-		
 		
 		
 	}
