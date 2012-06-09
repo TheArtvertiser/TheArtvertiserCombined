@@ -99,6 +99,9 @@
 			Info,
 			Tracking
 		}state;
+		
+		bool doComms;
+		bool doTakeAPhoto;
 
 };
 

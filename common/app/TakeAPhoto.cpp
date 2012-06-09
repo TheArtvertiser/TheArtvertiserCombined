@@ -276,9 +276,10 @@ void TakeAPhoto::updateState(Transition transition){
 void TakeAPhoto::update(){
 	
 #ifdef TARGET_OSX
-	if ( ((ofVideoGrabber*)imgSource)->isFrameNew() )
-	{
-		newFrame( imgSource->getPixelsRef() );
+	if ( !metadataOnly ){
+		if ( ((ofVideoGrabber*)imgSource)->isFrameNew() ){
+			newFrame( imgSource->getPixelsRef() );
+		}
 	}
 #endif
 	

@@ -53,6 +53,12 @@ void ArtvertiserApp::setup(){
 	ofBackground(66,51,51);
 	ofEnableAlphaBlending();
 
+	
+	doTakeAPhoto = true;
+	doComms = true;
+
+	
+	
 	vector<Artvert> artverts = Artvert::listAll();
 	ofLogVerbose("ArtvertiserApp","checking artverts integrity");
 	for(int i=0; i<(int)artverts.size(); i++){
@@ -100,16 +106,19 @@ void ArtvertiserApp::setup(){
 
 	comm = ofPtr<Comm>(new Comm);
 
+	
 	menu.setIconCache(iconCache);
-	menu.setup();
+	menu.setup( doTakeAPhoto, doComms );
 	menu.enableEvents();
 
 	artvertInfo.setIconCache(iconCache);
 	artvertInfo.setGeo(geo);
 
-	takeAPhoto.setGeo(geo);
-	takeAPhoto.setup(grabber);
-
+	if ( doTakeAPhoto )
+	{
+		takeAPhoto.setGeo(geo);
+		takeAPhoto.setup(grabber);
+	}
 
 #ifdef TARGET_ANDROID
 	ofxAndroidVideoGrabber * androidGraber = dynamic_cast<ofxAndroidVideoGrabber*>(grabber.getGrabber().get());
@@ -120,14 +129,17 @@ void ArtvertiserApp::setup(){
 	ofAddListener(videoUtils->bufferEvent,&takeAPhoto,&TakeAPhoto::newFrame);
 #endif
 
-	onlineArtverts.setURL(SERVER_URL);
-	onlineArtverts.setIconCache(iconCache);
-	onlineArtverts.setComm(comm);
-	onlineArtverts.setup();
+	if ( doComms )
+	{
+		onlineArtverts.setURL(SERVER_URL);
+		onlineArtverts.setIconCache(iconCache);
+		onlineArtverts.setComm(comm);
+		onlineArtverts.setup();
 
-	comm->setURL(SERVER_URL);
-	comm->start();
-
+		comm->setURL(SERVER_URL);
+		comm->start();
+	}
+	
 	if ( CommandlineParser::get()->isRunningOnBinoculars() )
 	{
 		state = Tracking;

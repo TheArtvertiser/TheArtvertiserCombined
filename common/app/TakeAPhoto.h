@@ -106,6 +106,7 @@ private:
 	ofImage noIcon;
 	ofImage exitIcon;
 
+
 	float scale;
 	float videoWidth,videoHeight;
 

@@ -36,7 +36,7 @@ class MainMenu {
 public:
 	MainMenu();
 
-	void setup();
+	void setup( bool doTakeAPhoto, bool doComms );
 	void enableEvents();
 	void disableEvents();
 	void refresh();
