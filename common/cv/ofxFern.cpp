@@ -265,8 +265,10 @@ void ofxFern::initTracker(string marker, int width, int height){
 		img.setUseTexture(false);
 		warped.setUseTexture(false);
 
-		img.allocate(640,480);
-		warped.allocate(640,480);
+		int modelWidth = detector->model_image->width;
+		int modelHeight = detector->model_image->height;
+		img.allocate(modelWidth,modelHeight);
+		warped.allocate(modelWidth,modelHeight);
 		img = detector->model_image;
 		ofPoint src[4], dst[4];
 		for(int i=0;i<4;i++){
