@@ -36,6 +36,7 @@ private:
 	itg::ofxMovieExporter exporter;
 #endif
 	string snapshotFilename;
+	bool snapshotted;
 	
 	int width, height;
 	double lastFrameTime;

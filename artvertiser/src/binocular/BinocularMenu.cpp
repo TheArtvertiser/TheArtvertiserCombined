@@ -54,36 +54,62 @@ void BinocularMenu::draw( ofEventArgs& args )
 		int linesPerScreen = float(ofGetHeight())/lineHeight;
 		int midLine = linesPerScreen/2;
 		float yOffset = FONT_SIZE;
-		if ( selectionIndex > midLine )
+/*		if ( selectionIndex > midLine )
 		{
 			if ( selectionIndex < advertArtworkPairs.size()-midLine )
 				yOffset -= lineHeight*(selectionIndex-midLine);
 			else
 				yOffset -= lineHeight*(advertArtworkPairs.size()-2*midLine);
-		}
+		}*/
 				
 		//float yOffset = FONT_SIZE - max(min(advertArtworkPairs.size()-4,selectionIndex-8),0)*lineHeight;
 
 		ofSetColor( ofColor::black );
 		
+		float selectionY = 0;
 		int count =0;
-		for ( int i=0; i<adverts.size(); i++) 
+		for ( int i=0; i<advertArtworkPairs.size(); i++ )
 		{
-			for ( int j=0; j<artworkFiles[i].size(); j++ )
-			{
-				
-				string description = adverts[i].getDescription( artworkFiles[i][j] );
-				
-				bool highlight = (count==selectionIndex);
-				int shadow = (highlight?-1:0);
-				ofSetColor( highlight ? ofColor::black : ofColor::white );
-				font.drawString( ofToString( count+1 )+" "+description, 10+shadow, count*lineHeight + yOffset + shadow );
-				ofSetColor( highlight ? ofColor::white : ofColor::black );
-				font.drawString( ofToString( count+1 )+" "+description, 11+shadow, count*lineHeight + yOffset + 1 + shadow );
-				
-				count++;
+			int whichAdvert = advertArtworkPairs[i].first;
+			int whichArtwork = advertArtworkPairs[i].second;
 
+			string description = adverts[whichAdvert].getDescription( artworkFiles[whichAdvert][whichArtwork] );
+				
+			bool highlight = (count==selectionIndex);
+			int shadow = (highlight?-1:0);
+			ofSetColor( highlight ? ofColor::black : ofColor::white );
+			font.drawString( ofToString( count+1 )+" "+description, 10+shadow, count*lineHeight + yOffset + shadow );
+			ofSetColor( highlight ? ofColor::white : ofColor::black );
+			font.drawString( ofToString( count+1 )+" "+description, 11+shadow, count*lineHeight + yOffset + 1 + shadow );
+								
+			count++;
+				
+			if ( count == selectionIndex )
+				selectionY = count*lineHeight + yOffset;
+
+			
+		}
+		
+		if ( advertArtworkPairs.size() > 0 && advertArtworkPairs.size() > selectionIndex )
+		{
+			const ofFile& previewImagePath = adverts[advertArtworkPairs[selectionIndex].first].getCompressedImage();
+			ofPtr<ofImage> previewImage = iconCache.getResource( previewImagePath.getAbsolutePath()+"Preview");
+			if(!previewImage->bAllocated()){
+				previewImage->setUseTexture(true);
+				previewImage->loadImage( previewImagePath );
+				float ratio = previewImage->getHeight()/previewImage->getWidth();
+				previewImage->resize(ofGetWidth()/4.,(ofGetWidth()/4.)*ratio);
 			}
+
+			float previewY = 10;
+			if ( selectionY < ofGetHeight()/2 )
+			{
+				previewY = ofGetHeight()-previewImage->getHeight()-10;
+			}
+			float previewX = ofGetWidth()-previewImage->getWidth()-10;
+			ofSetColor( ofColor::white );
+			previewImage->draw( previewX, previewY );
+			
 		}
 		
 		
