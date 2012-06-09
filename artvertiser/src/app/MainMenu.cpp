@@ -26,40 +26,72 @@
 MainMenu::MainMenu()
 :circularPB(15)
 {
-
 }
 
-void MainMenu::setup(){
+void MainMenu::setup( bool doTakeAPhoto, bool doComms ){
 	ofAddListener(ofEvents().windowResized,this,&MainMenu::windowResized);
 
-	ofImage cameraIcon;
-	cameraIcon.loadImage("icons/camera.png");
+	float menuWidth = 0;
+	if ( doTakeAPhoto )
+	{
+		ofImage cameraIcon;
+		cameraIcon.loadImage("icons/camera.png");
 
-	menu.setPosition(ofPoint(ofGetWidth()-cameraIcon.getWidth()-20,20));
-	menu.setWidth(cameraIcon.getWidth());
+		cameraButton = ofPtr<gui::Button>(new gui::Button);
+		cameraButton->setIcon(cameraIcon);
+		ofAddListener(cameraButton->pressedE,this,&MainMenu::cameraPressed);
+		menu.addWidget(cameraButton);
+		
+		menuWidth = max(menuWidth, cameraIcon.getWidth() );
+		
+	}
+	
+	if ( doComms )
+	{
+		ofImage downloadIcon("icons/download.png");
 
-	cameraButton = ofPtr<gui::Button>(new gui::Button);
-	cameraButton->setIcon(cameraIcon);
-	ofAddListener(cameraButton->pressedE,this,&MainMenu::cameraPressed);
-	menu.addWidget(cameraButton);
+		downloadButton = ofPtr<gui::Button>(new gui::Button);
+		downloadButton->setIcon(downloadIcon);
+		ofAddListener(downloadButton->pressedE,this,&MainMenu::downloadPressed);
+		menu.addWidget(downloadButton);
 
-	ofImage downloadIcon("icons/download.png");
-
-	downloadButton = ofPtr<gui::Button>(new gui::Button);
-	downloadButton->setIcon(downloadIcon);
-	ofAddListener(downloadButton->pressedE,this,&MainMenu::downloadPressed);
-	menu.addWidget(downloadButton);
-
+		menuWidth = max(menuWidth, downloadIcon.getWidth() );
+	}
+	
+	if ( menuWidth > 0 )
+		menu.setPosition(ofPoint(ofGetWidth()-menuWidth-20,20));
+	menu.setWidth(menuWidth);
+	
 	//grid.setPosition(ofPoint(20, 20));
-	grid.setCellSize(cameraIcon.getWidth()*1.4, cameraIcon.getWidth()*1.4*3./4.);
+	float cameraIconWidth = 90.0f;
+	grid.setCellSize(menuWidth*1.4, menuWidth*1.4*3./4.);
 	grid.setSpacing(20,20);
-	grid.setRectangle(ofRectangle(20,20,cameraButton->getRect().x-5,ofGetHeight()));
+	float maxX = ofGetWidth();
+	if ( doComms || doTakeAPhoto )
+	{
+		if ( doComms )
+			maxX = downloadButton->getRect().x-5;
+		else 
+			maxX = cameraButton->getRect().x-5;
+	}
+	grid.setRectangle(ofRectangle(20,20, maxX,ofGetHeight()));
 	refresh();
 }
 
 void MainMenu::windowResized(ofResizeEventArgs & window){
-	menu.setPosition(ofPoint(ofGetWidth()-cameraButton->getRect().width-20,20));
-	grid.setRectangle(ofRectangle(20,20,cameraButton->getRect().x-5,ofGetHeight()));
+	if ( cameraButton )
+	{
+		menu.setPosition(ofPoint(ofGetWidth()-cameraButton->getRect().width-20,20));
+		grid.setRectangle(ofRectangle(20,20,cameraButton->getRect().x-5,ofGetHeight()));
+	}
+	else if ( downloadButton )
+	{
+		menu.setPosition(ofPoint(ofGetWidth()-downloadButton->getRect().width-20,20));
+		grid.setRectangle(ofRectangle(20,20,downloadButton->getRect().x-5,ofGetHeight()));
+	}
+	else {
+		grid.setRectangle(ofRectangle(20,20,ofGetWidth(),ofGetHeight()));
+	}
 }
 
 void MainMenu::enableEvents(){
