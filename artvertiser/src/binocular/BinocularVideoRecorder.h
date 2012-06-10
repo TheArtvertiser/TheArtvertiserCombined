@@ -30,12 +30,12 @@ private:
 	void setWidthHeight( int w, int h ) { width = w; height = h; }
 	
 	bool recording;
+	bool snapshotted;
 
 #ifndef TARGET_ANDROID
 	itg::ofxMovieExporter exporter;
 #endif
 	string snapshotFilename;
-	bool snapshotted;
 	
 	int width, height;
 	double lastFrameTime;
