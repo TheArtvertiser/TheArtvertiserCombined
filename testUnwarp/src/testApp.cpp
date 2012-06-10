@@ -31,6 +31,10 @@ void testApp::setup(){
 	warpedDir.create();
 }
 
+double sqr( double x)
+{
+	return x*x;
+}
 
 /// originalRoiPoints are the original (unwarped, perspective distorted) points
 /// cameraPrincipalPoint is the centre of barrel distortion, usually (imageWidth/2,imageHeight/2)
@@ -40,10 +44,10 @@ float calculateAspectRatio( const vector<ofPoint> &originalRoiPoints, ofVec2f ca
 	float m1y = originalRoiPoints[0].y;
 	float m2x = originalRoiPoints[1].x;
 	float m2y = originalRoiPoints[1].y;
-	float m3x = originalRoiPoints[2].x;
-	float m3y = originalRoiPoints[2].y;
-	float m4x = originalRoiPoints[3].x;
-	float m4y = originalRoiPoints[3].y;
+	float m3x = originalRoiPoints[3].x;
+	float m3y = originalRoiPoints[3].y;
+	float m4x = originalRoiPoints[2].x;
+	float m4y = originalRoiPoints[2].y;
 	
 	float u0 = cameraPrincipalPoint.x;
 	float v0 = cameraPrincipalPoint.y;
@@ -73,6 +77,8 @@ float calculateAspectRatio( const vector<ofPoint> &originalRoiPoints, ofVec2f ca
 	m4x = m4x - u0;
 	m4y = m4y - v0;
 	
+	u0 = 0;
+	v0 = 0;
 	
 	// temporary variables k2, k3
 	double k2 = ((m1y - m4y)*m3x - (m1x - m4x)*m3y + m1x*m4y - m1y*m4x) /
@@ -81,28 +87,38 @@ float calculateAspectRatio( const vector<ofPoint> &originalRoiPoints, ofVec2f ca
 	double k3 = ((m1y - m4y)*m2x - (m1x - m4x)*m2y + m1x*m4y - m1y*m4x) / 
 	((m3y - m4y)*m2x - (m3x - m4x)*m2y + m3x*m4y - m3y*m4x) ;
 	
+
+	
 	// f_squared is the focal length of the camera, squared
 	// if k2==1 OR k3==1 then this equation is not solvable
 	// if the focal length is known, then this equation is not needed
 	// in that case assign f_squared= sqr(focal_length)
-	double f_squared = 
-    -((k3*m3y - m1y)*(k2*m2y - m1y) + (k3*m3x - m1x)*(k2*m2x - m1x)) / 
-	((k3 - 1)*(k2 - 1)) ;
+	//double f_squared =  -((k3*m3y - m1y)*(k2*m2y - m1y) + (k3*m3x - m1x)*(k2*m2x - m1x)) / 	((k3 - 1)*(k2 - 1)) ;
+	//ofLogNotice() << " k2 k3 " << k2 << " " << k3;
+	//double f_squared = sqr(u0); // (width/2)^2
+	//double f_squared = sqr(0.5f);
+	double f_squared = sqr(45.2097243131986);
+
 	
 	//The width/height ratio of the original rectangle
-	double whRatio = sqrt( 
-						  (sqrt(k2 - 1) + sqrt(k2*m2y - m1y)/f_squared + sqrt(k2*m2x - m1x)/f_squared) /
-						  (sqrt(k3 - 1) + sqrt(k3*m3y - m1y)/f_squared + sqrt(k3*m3x - m1x)/f_squared) 
-						  ) ;
+	double whRatioPre = 
+	(sqr(k2 - 1) + sqr(k2*m2y - m1y)/f_squared + sqr(k2*m2x - m1x)/f_squared) /
+	(sqr(k3 - 1) + sqr(k3*m3y - m1y)/f_squared + sqr(k3*m3x - m1x)/f_squared) ;
+	double whRatio = sqrt( fabs(whRatioPre)  ) ;
+	//ofLogNotice() << " whRatioPre " << whRatioPre << " whRatio " << whRatio;
 	
+	
+
 	// if k2==1 AND k3==1, then the focal length equation is not solvable 
 	// but the focal length is not needed to calculate the ratio.
 	// I am still trying to figure out under which circumstances k2 and k3 become 1
 	// but it seems to be when the rectangle is not distorted by perspective, 
 	// i.e. viewed straight on. Then the equation is obvious:
 	if (k2==1 && k3==1) 
-		whRatio = sqrt( (sqrt(m2y-m1y) + sqrt(m2x-m1x)) / 
-					   (sqrt(m3y-m1y) + sqrt(m3x-m1x)) );
+		whRatio = sqrt( (sqr(m2y-m1y) + sqr(m2x-m1x)) / 
+					   (sqr(m3y-m1y) + sqr(m3x-m1x)) );
+	
+
 
 
 	// After testing, I found that the above equations 
@@ -111,7 +127,7 @@ float calculateAspectRatio( const vector<ofPoint> &originalRoiPoints, ofVec2f ca
 	// If someone can find the error that caused this, 
 	// I would be most grateful.
 	// until then:
-	whRatio = 1/whRatio;
+	//whRatio = 1.0f/whRatio;
 	
 	return whRatio;
 }
@@ -126,7 +142,7 @@ void testApp::update(){
 	w = MIN(warp.getQuad()[0].distance(warp.getQuad()[1]),warp.getQuad()[2].distance(warp.getQuad()[3]));
 	h = MIN(warp.getQuad()[0].distance(warp.getQuad()[3]),warp.getQuad()[1].distance(warp.getQuad()[2]));*/
 	
-	float aspectRatio = calculateAspectRatio( srcQuad, ofVec2f(img.getWidth()/2,img.getHeight()/2) );
+	float aspectRatio = calculateAspectRatio( warp.getQuad(), ofVec2f(img.getWidth()/2,img.getHeight()/2) );
 
 	unwarpFbo.begin();
 	ofClear(0);
@@ -138,6 +154,8 @@ void testApp::update(){
 		h = 480;
 		w = 480*aspectRatio;
 	}
+	ofLogNotice() << "aspect ratio: " << aspectRatio << " w/h " << w << "," << h ;
+
 	unwarpImage.draw(0,0,w,h);
 	unwarpFbo.end();
 	unwarpFbo.readToPixels(unwarpedPixels);
