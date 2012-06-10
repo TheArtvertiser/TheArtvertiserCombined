@@ -2,6 +2,8 @@
 #include "homography.h"
 //--------------------------------------------------------------
 void testApp::setup(){
+	dir.allowExt("jpg");
+	dir.allowExt("JPG");
 	dir.listDir("");
 	currentImg = 0;
 	img.loadImage(dir.getFile(0).path());
