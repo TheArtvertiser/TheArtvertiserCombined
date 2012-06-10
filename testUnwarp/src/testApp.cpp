@@ -142,11 +142,11 @@ void testApp::update(){
 	w = MIN(warp.getQuad()[0].distance(warp.getQuad()[1]),warp.getQuad()[2].distance(warp.getQuad()[3]));
 	h = MIN(warp.getQuad()[0].distance(warp.getQuad()[3]),warp.getQuad()[1].distance(warp.getQuad()[2]));*/
 	
-	float aspectRatio = calculateAspectRatio( warp.getQuad(), ofVec2f(img.getWidth()/2,img.getHeight()/2) );
+	aspectRatio = calculateAspectRatio( warp.getQuad(), ofVec2f(img.getWidth()/2,img.getHeight()/2) );
 
 	unwarpFbo.begin();
 	ofClear(0);
-	if(aspectRatio>1){
+	if(aspectRatio>=4./3.){
 		w = 640;
 		h = 640/aspectRatio;
 	}
@@ -154,7 +154,7 @@ void testApp::update(){
 		h = 480;
 		w = 480*aspectRatio;
 	}
-	ofLogNotice() << "aspect ratio: " << aspectRatio << " w/h " << w << "," << h ;
+	//
 
 	unwarpImage.draw(0,0,w,h);
 	unwarpFbo.end();
@@ -213,7 +213,7 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-
+	ofLogNotice() << "aspect ratio: " << aspectRatio << " w/h " << w << "," << h ;
 }
 
 //--------------------------------------------------------------

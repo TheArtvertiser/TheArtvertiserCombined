@@ -36,4 +36,5 @@ class testApp : public ofBaseApp{
 		float w,h;
 		ofDirectory dir;
 		int currentImg;
+		float aspectRatio;
 };
