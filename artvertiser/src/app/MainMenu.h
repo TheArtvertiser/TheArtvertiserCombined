@@ -47,6 +47,8 @@ public:
 	void cameraPressed(bool & pressed);
 	void downloadPressed(bool & pressed);
 	void snapshotPressed(const void * sender, bool & pressed);
+	void downPressed(bool & pressed);
+	void upPressed(bool & pressed);
 
 	void setIconCache(ofPtr<gui::IconCache> & iconCache);
 
@@ -55,6 +57,8 @@ public:
 	ofEvent<bool> cameraPressedE;
 	ofEvent<bool> downloadPressedE;
 	ofEvent<Artvert> artvertSelectedE;
+	ofEvent<bool> downPressedE;
+	ofEvent<bool> upPressedE;
 
 private:
 	vector<Artvert> artverts;
@@ -63,9 +67,13 @@ private:
 	gui::CircularPB circularPB;
 	ofPtr<gui::Button>		cameraButton;
 	ofPtr<gui::Button>		downloadButton;
+	ofPtr<gui::Button>		downButton;
+	ofPtr<gui::Button>		upButton;
 	gui::VFrame		menu;
 	gui::Grid		grid;
 
+	float yOffset;
+	
 	ofPtr<gui::IconCache> iconCache;
 };
 

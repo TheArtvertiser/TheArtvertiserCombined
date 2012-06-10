@@ -32,6 +32,7 @@ void MainMenu::setup( bool doTakeAPhoto, bool doComms ){
 	ofAddListener(ofEvents().windowResized,this,&MainMenu::windowResized);
 
 	float menuWidth = 0;
+	yOffset = 0;
 	if ( doTakeAPhoto )
 	{
 		ofImage cameraIcon;
@@ -57,6 +58,17 @@ void MainMenu::setup( bool doTakeAPhoto, bool doComms ){
 
 		menuWidth = max(menuWidth, downloadIcon.getWidth() );
 	}
+	
+	ofImage downIcon("icons/yes.png");
+	downButton = ofPtr<gui::Button>(new gui::Button);
+	downButton->setIcon(downIcon);
+	ofAddListener(downButton->pressedE, this, &MainMenu::downPressed );
+	menu.addWidget(downButton);
+	ofImage upIcon("icons/no.png");
+	upButton = ofPtr<gui::Button>(new gui::Button);
+	upButton->setIcon(upIcon);
+	ofAddListener(upButton->pressedE, this, &MainMenu::upPressed );
+	menu.addWidget(upButton);
 	
 	if ( menuWidth > 0 )
 		menu.setPosition(ofPoint(ofGetWidth()-menuWidth-20,20));
@@ -149,6 +161,8 @@ void MainMenu::update(){
 
 void MainMenu::draw(){
 	menu.draw();
+	ofPushMatrix();
+	ofTranslate(0, yOffset);
 	grid.draw();
 	for(int i=0; i< (int)grid.size(); i++){
 		if(!readyCache[i]){
@@ -157,6 +171,15 @@ void MainMenu::draw(){
 			circularPB.draw();
 		}
 	}
+	ofPopMatrix();
+}
+
+void MainMenu::downPressed(bool &pressed ){
+	yOffset += ofGetHeight()/2;
+}
+
+void MainMenu::upPressed(bool &pressed ){
+	yOffset -= ofGetHeight()/2;
 }
 
 void MainMenu::cameraPressed(bool & pressed){
